@@ -1,0 +1,85 @@
+### Create Project 
+
+#### Start Project
+
+In the `Console` tab:
+
+```{r c2, eval=FALSE}
+wflow_start("PROJECT_NAME")
+```
+1. What does `wflow_start` do?
+    + Creates a directory that contains all starting files
+    + Changes your current directory to PROJECT_NAME 
+    + Starts a Git repo which we will connect to GitLab repository 
+
+2. What is the `analysis` folder for?
+    + Contains all source R Markdown files (Rmd)
+        + Includes: `index.rmd`
+            + Contains no R code but generates `index.html` which eventally runs the entire project
+    + Contains `_site.yml`
+        + Allows user to edit theme, navigation bar, menus ect. 
+        + Helpful [link]( https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html) to customizing
+
+    
+3. What is the `docs` folder for?
+    + Contains all HTML files for website 
+        + Note that this file will be empty until we build the project 
+        + Each HTML file is built from a corresponding Rmd file in the analysis folder
+    + Contains any figures created by Rmd files
+
+
+4. What about the data, code and output files?
+    + These files are there for your use and thus can be deleted if desired
+
+#### Build Project
+
+In the `Console` tab:
+
+```{r c3, eval=FALSE}
+wflow_build()
+```
+1. What does `wflow_build()` do? 
+    + Builds all the R Markdown files in analysis and saves their HTML in docs
+    + Displays the website
+    
+Your website should like simialr to the image of mine shown below (except with a Publish tab instead of a Dates tab) 
+
+```{r, c4, out.width='90%', fig.align='center', echo=FALSE}
+knitr::include_graphics('images/Workflow_Photos/sample_wf.png')
+```
+
+
+#### View Project
+
+At any time you can view the current site on your local machine by typing in the `Console` tab:
+
+```{r c5, eval=FALSE}
+wflow_view()
+```
+
+#### Publish Website 
+
+Currently our project is simply an HTML file stored on our laptop, publishing the website will make it available online.
+
+In the `Console` tab:
+
+```{r c6, eval=FALSE}
+wflow_status()
+```
+
+This allows you to view which files are published or unpublished currently.
+
+Now we want to publish our page the command to do so takes three parts
+
+1. c - Commit
+2. ("analysis/index.Rmd", "analysis/about.Rmd", "analysis/license.Rmd"), - A character vector of the Rmd files you want published
+    + It may be eaiser to place ("*.Rmd") here to use all the files
+3. "Publish the initial files" -  A commit message to be posted 
+
+Overall, `wflow_publish` is a quick and error-free way for us to commit and push all of our Rmd files to GitLab at once. 
+
+In the `Console` tab:
+
+```{r c7, eval=FALSE}
+wflow_publish(c("analysis/index.Rmd", "analysis/about.Rmd", "analysis/license.Rmd"), "Publish the initial files for PROJECT_NAME")
+```

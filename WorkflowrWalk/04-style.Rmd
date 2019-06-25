@@ -1,0 +1,74 @@
+### Styling the Webpage 
+
+#### Helpful Links
+
+If you already have an idea of what you would like to change, below are a few very helpful resources filled with information:
+
++ This resource is a great place to start because it has all basics of Rmd syntax and I used it as a cheat sheet along the way.
+    + [Rmd Cheat Sheet](https://rmarkdown.rstudio.com/authoring_basics.html)
+
++ This is an entire book all about Rmd and how to use it. I found it rather lengthy but very helpful.
+    + [Rmd Thorough Guide](https://bookdown.org/yihui/rmarkdown/html-document.html#appearance_and_style)
+    
++ If something isn't quite working right you may have run into a workflowr issue in which cause thier FAQ's page is helpful.
+    + [Workflor FAQ's](https://jdblischak.github.io/workflowr/articles/wflow-05-faq.html)
+    
+#### Changing the Theme
+
+Changing the theme modifies the overall apparane of the webpage is a quick and easy way to spice up the page.
+
+1. Go into your `analysis/_site.yml` file
+2. Underneath `ouput` add `theme = cerulean` as shown below:
+    + The cerulean theme matches Agios colors 
+``` {r e2, eval=FALSE}
+output:
+    theme: cerulean
+```
+3. Choose your theme
+    + The following themes are avalible : “default”, “cerulean”, “journal”, “flatly”, “darkly”, “readable”, “spacelab”, “united”, “cosmo”, “lumen”, “paper”, “sandstone”, “simplex”, “yeti”
+    + You can view how they look here: [Themes](https://bootswatch.com/)
+    
+4. Preview your theme using,
+
+```{r e3, eval=FALSE}
+wflow_build()
+```
+
+5. Update your website by running,
+    + This will rebuild every HTML file even if thier corresponding Rmd file hasn't been updated 
+
+```{r e4, eval=FALSE}
+wflow_publish("analysis/_site.yml", "Change the theme", republish = TRUE)
+```
+
+The following website will also walk you through changing the theme: [Themes Overview](https://jdblischak.github.io/workflowr/articles/wflow-02-customization.html#changing-the-theme)
+
+#### Adding Photos
+
+Although this may seem like a simple taks, it is a bit challenging since we are using Workflowr
+
+1. Create a `photos` folder inside the `docs` folder and add your photo there:
+
+```{r c13, eval=FALSE}
+dir.create("docs/photos")
+```
+
+2. Include the following command wherever you want your graphic to apper:
+
+```{r e6, out.width='50%',fig.align='left', echo=FALSE}
+knitr::include_graphics('images/Workflow_Photos/photoExample.png')
+```
+
+3. View the images on the webpage
+
+```{r c10, eval=FALSE}
+wflow_build()
+```
+
+4. Add to GitLab
+    + We need to push the acutal photo to GitLab using `wflow_git_commit` and then we can use `wflow_publish` to automatically push the rest of the files to GitLab 
+
+```{r c11, eval=FALSE}
+wflow_git_commit("docs/assets/external.png", "Add external image of ...")
+wflow_publish()
+```

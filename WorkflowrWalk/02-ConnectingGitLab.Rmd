@@ -1,0 +1,36 @@
+### Connecting to GitLab
+
+#### Creating a remote repository on GitLab
+
+1. Login to GitLab and click `New Project`
+2. The project name in GitLab should the same name as the project in RStudio, we called ours PROJECT_NAME
+3. Make sure to save it as Internal so everyone in Agios can see it 
+
+#### Connect RStudio and GitLab
+
+1. Go to RStudio, in `Console` tab:
+
+```{r a1, eval=FALSE}
+ wflow_use_gitlab(username = "first.last", repository = "PROJECT_NAME", domain = "ceres.agios.com")
+```
+
+2. Go back to GitLab and and scroll down to the `push an existing Git repository` option
+    + Then, copy every thing in the box besides the `cd` line
+
+```{r a2, eval=FALSE}
+git remote rename origin old-origin
+git remote add origin git@ceres.agios.com:Caitlin.Guccione/test-.git
+git push -u origin --all
+git push -u origin --tags
+```
+    
+3. Go back into RStudio and in the `Terminal` tab
+    + Make sure you are in the PROJECT_NAME repo
+    + Paste the above commands
+
+4. Return to GitLab to ensure your entire project exists there
+
+
+```{r a3, out.width='100%',fig.align='center', fig.cap='Example GitLab and Workflowr Connection', echo=FALSE}
+knitr::include_graphics('images/Workflow_Photos/screen_shot.png')
+```

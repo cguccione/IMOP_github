@@ -1,0 +1,32 @@
+### Installation
+
+#### Programs Needed 
+We are assuming that you already have RStuido and GitLab, for this implementation we are using the RStudio on the new sever which is version 1.2.1335.1. 
+
+If you don't have GitLab you need to have an account setup through Agios, if you don't have the updated RStudio you need to get access to the new server and then use the following link : [hpc.agios.local](https://hpc.agios.local) 
+
+#### Installing Workflowr
+
+1. Open RStudio and change proejct in the top right corner to `(None)`
+    + Make sure you are in your home directory on RStudio as well, thus in the bottom right corner of your screen under `New Folder`, it is labled `Home` with a small house. 
+
+2. In the `Console` tab located in the bottom lefthand corner : 
+
+```{r b7, eval=FALSE}
+install.packages("workflowr")
+```
+
+3. Confirm you have acess to Workflowr, in the `Console` tab:
+
+```{r b8, eval=FALSE}
+library("workflowr")
+```
+
+#### Configure Git 
+*This only needs to be done once per laptop
+
+In the `Console` tab:
+
+```{r b9, eval=FALSE}
+wflow_git_config(user.name = "First Last", user.email = "first.last@agios.com")
+```

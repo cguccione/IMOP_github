@@ -1,0 +1,69 @@
+### Quick Start
+
+This is a quick version of everything listed below, if you want more clear or specfic instructions then please skip this chaper and follow the steps in the following one. 
+
+#### Set Up
+
+In the `Console` tab of RStudio in `(None)` project: 
+
+```{r b1, eval=FALSE}
+install.packages("workflowr")
+library("workflowr")
+wflow_git_config(user.name = "First Last", user.email = "first.last@agios.com")
+```
+
+#### Creating Projects
+
+In the `Console` tab, 
+
+```{r b2, create, eval=FALSE}
+wflow_start("PROJECT_NAME")
+wflow_build()
+wflow_publish(c("analysis/*.Rmd"), "Publish the initial files for PROJECT_NAME")
+```
+
+#### Connecting to GitLab
+
+In the `Console` tab, 
+
+```{r b3, git, eval=FALSE}
+wflow_use_gitlab(username = "first.last", repository = "PROJECT_NAME", domain = "ceres.agios.com")
+```
+
+Go to GitLab and do the following:
+
++ Create a project in GitLab should the same name as the project in RStudio
+    + We called ours PROJECT_NAME
++ Go back to GitLab and and scroll down to the push an existing Git repository option
+    + Then, copy every thing in the box besides the cd line
++ Paste what you just copied into the `Terminal` tab in RStudio
+    + Make sure you are in  PROJECT_NAME directory 
+
+
+#### Creating a New File
+
+In the `Console` tab, 
+
+```{r b4, eval=FALSE}
+wflow_open("analysis/NEW_FILE.Rmd")
+wflow_build()
+wflow_publish(c("analysis/*.Rmd"), "Publish the file NEW_FILE")
+```
+
+In the `Terminal` tab, 
+```{r b5, eval=FALSE}
+git push
+```
+
+#### Publish to GitLab without Rebuilding Sites
+
+1. Edit the Rmd file and save
+2. Run one of the following commands (doesn't matter)
+    + wflow_build()
+        + It does't matter if we build other files, they won't be added to git unless we add them in the next step
+    + wflow_build("file.rmd")
+    + Knit the file
+3. `wflow_git_commit("file.rmd", "This is your commit message")`
+4. Flip into the terminal and run `git push()`
+      
+

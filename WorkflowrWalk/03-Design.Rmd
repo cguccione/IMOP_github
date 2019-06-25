@@ -1,0 +1,87 @@
+### Adding New Files
+
+#### Creating New Files
+
+Make sure you are inside the PROJECT_NAME project inside RStudio
+
+In `Console` tab type:
+
+```{r c9, eval=FALSE}
+wflow_open("analysis/NEW_FILE.Rmd")
+```
+
++ This command creates a new Rmd file and then opens it for your convivence. 
+
+If we now want to see the HTML version of our file then we have two options:
+
+1. In `Console` tab type:
+
+```{r d1, eval=FALSE}
+wflow_build()
+```
++ You can add specfic files to this command or simply leave it empty
++ This produces a small view of your website right on RStudio
+    
+2. Press the `Knit' button in RStudio as shown below: 
+
+```{r d2, out.width='10%',fig.align='center', echo=FALSE}
+knitr::include_graphics('images/Workflow_Photos/knit.png')
+```
+
++ This produces a large web version of your current HTML file 
+
+These steps will simply change the HTML file local bu tin order to make this public and add it to GitLab we need to update our changes. 
+
+#### Update your Changes
+
+1. Check the status to see what needs to be udated, in the `Console` tab,
+
+```{r d3, eval=FALSE}
+wflow_status()
+```
+
+This can also be done by looking at the red checks on the workflowr section of your live page as shown below: 
+
+```{r, d4, out.width='90%', fig.align='center', echo=FALSE}
+knitr::include_graphics('images/Workflow_Photos/red_checks.png')
+```
+
+2. Make the appropriate HTML files public and updated, in the `Console` tab,
+
+```{r d5, eval=FALSE}
+wflow_publish(c("analysis/index.Rmd", "analysis/NEW_FILE.Rmd"), "Add my first file")
+```
++ This is the same format found on the `Publish Website` tab of this page and so you can customize it in the same way 
+
+
+There is one exception to this and it's when you want to make updates to the `_site.yml` file found in the `analysis` folder. This file controls the style on the top of every page of your website. In this case you want to update all HTML files even though their Rmd files aren't changed. 
+
+In that case, use this,
+
+```{r d6, eval=FALSE}
+wflow_publish("analysis/_site.yml", "Change the theme", republish = TRUE)
+```
+
+3. Push the final changes to GitLab
+
+As we did previously in the `Publish Website`, in the `Terminal` tab,
+
+```{r d7, eval=FALSE}
+git push
+```
+
+#### Adding Workflowr to New File
+
+If you want the normal workflowr setup which is found on all the other pages, then replace the --- part of the file with the following code:
+
+```
+			---
+			title: "Home"
+			site: workflowr::wflow_site
+			output:
+			  workflowr::wflow_html:
+			    toc: false
+			editor_options:
+			  chunk_output_type: console
+      ---
+```
