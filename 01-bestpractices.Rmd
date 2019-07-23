@@ -2,7 +2,7 @@
 
 ## Reproducible research
 
-### Purpose
+### Purpose - THIS IS NEW
 
 1. Improve collaborative analyses:
   * make sharing easier
