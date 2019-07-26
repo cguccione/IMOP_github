@@ -1,5 +1,5 @@
+language: r
 deploy:
-  language: r
   provider: pages
   skip_cleanup: true
   github_token: "$GITHUB_TOKEN"
