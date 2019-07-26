@@ -23,3 +23,5 @@ deploy:
     branch: master
   local_dir: public
   fqdn: travis-blogdown.yihui.name
+  repo: cguccione/cguccione.github.io
+  target_branch: master
