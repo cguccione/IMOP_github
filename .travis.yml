@@ -9,7 +9,7 @@ cache:
   directories:
   - "$HOME/bin"
 script:
-- Rscript -e 'bookdown::render_book()'
+- Rscript -e 'bookdown::render_book("index.Rmd", "bookdown::gitbook")'
 deploy:
   provider: pages
   skip_cleanup: true
